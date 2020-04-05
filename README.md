@@ -55,7 +55,7 @@ MedPy集成了SimpleITK来支持ITK的功能进行图像加载和存储。因此
 
 - step 1： 下载boost库，并使能python，在stage/lib目录下得到对应的boost_python36-vc141-mt-x64-1_72.lib/dll
 
-    b2.exe --with-python link=dynamic
+    b2.exe --with-python link=shared
     
 
 - step 2: 下载medpy源码，修改setup.py，配置对应的include路径、library路径，开始安装
