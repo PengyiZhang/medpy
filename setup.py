@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/demos/env python
 
 # version: 0.2.8
 # Many thanks to simplejson for the idea on how to install c++-extention module optionally!
@@ -47,8 +47,10 @@ maxflow = Extension('medpy.graphcut.maxflow',
                     define_macros = [('MAJOR_VERSION', '0'),
                                      ('MINOR_VERSION', '1')],
                     sources = ['lib/maxflow/src/maxflow.cpp', 'lib/maxflow/src/wrapper.cpp', 'lib/maxflow/src/graph.cpp'],
-                    libraries = [boost_python_library],
-                    extra_compile_args = ['-O0'])
+                    libraries = [],
+                    include_dirs = ["D:\\boost_1_72_0"],
+                    library_dirs = ["D:\\boost_1_72_0\\stage\\lib"],
+                    extra_compile_args = ["/MD"])
 
 ### FUNCTIONALITY FOR CONDITIONAL C++ BUILD
 if sys.platform == 'win32' and sys.version_info > (2, 6):
@@ -88,8 +90,13 @@ class ve_build_ext(build_ext):
         except ext_errors:
             raise BuildFailed()
 
+_DEBUG = False
 ### MAIN SETUP FUNCTION
 def run_setup(with_compilation):
+    if _DEBUG:
+        import pdb
+        pdb.set_trace()
+
     cmdclass = dict(test=TestCommand)
     if with_compilation:
         kw = dict(ext_modules = [maxflow],
@@ -140,46 +147,46 @@ def run_setup(with_compilation):
           packages = PACKAGES + ap,
 
           scripts=[
-            'bin/medpy_anisotropic_diffusion.py',
-            'bin/medpy_apparent_diffusion_coefficient.py',
-            'bin/medpy_binary_resampling.py',
-            'bin/medpy_convert.py',
-            'bin/medpy_create_empty_volume_by_example.py',
-            'bin/medpy_dicom_slices_to_volume.py',
-            'bin/medpy_dicom_to_4D.py',
-            'bin/medpy_diff.py',
-            'bin/medpy_extract_contour.py',
-            'bin/medpy_extract_min_max.py',
-            'bin/medpy_extract_sub_volume_auto.py',
-            'bin/medpy_extract_sub_volume_by_example.py',
-            'bin/medpy_extract_sub_volume.py',
-            'bin/medpy_fit_into_shape.py',
-            'bin/medpy_gradient.py',
-            'bin/medpy_graphcut_label_bgreduced.py',
-            'bin/medpy_graphcut_label_w_regional.py',
-            'bin/medpy_graphcut_label_wsplit.py',
-            'bin/medpy_graphcut_label.py',
-            'bin/medpy_graphcut_voxel.py',
-            'bin/medpy_grid.py',
-            'bin/medpy_info.py',
-            'bin/medpy_intensity_range_standardization.py',
-            'bin/medpy_intersection.py',
-            'bin/medpy_join_masks.py',
-            'bin/medpy_join_xd_to_xplus1d.py',
-            'bin/medpy_label_count.py',
-            'bin/medpy_label_fit_to_mask.py',
-            'bin/medpy_label_superimposition.py',
-            'bin/medpy_merge.py',
-            'bin/medpy_morphology.py',
-            'bin/medpy_resample.py',
-            'bin/medpy_reslice_3d_to_4d.py',
-            'bin/medpy_set_pixel_spacing.py',
-            'bin/medpy_shrink_image.py',
-            'bin/medpy_split_xd_to_xminus1d.py',
-            'bin/medpy_stack_sub_volumes.py',
-            'bin/medpy_swap_dimensions.py',
-            'bin/medpy_watershed.py',
-            'bin/medpy_zoom_image.py'
+            'demos/medpy_anisotropic_diffusion.py',
+            'demos/medpy_apparent_diffusion_coefficient.py',
+            'demos/medpy_binary_resampling.py',
+            'demos/medpy_convert.py',
+            'demos/medpy_create_empty_volume_by_example.py',
+            'demos/medpy_dicom_slices_to_volume.py',
+            'demos/medpy_dicom_to_4D.py',
+            'demos/medpy_diff.py',
+            'demos/medpy_extract_contour.py',
+            'demos/medpy_extract_min_max.py',
+            'demos/medpy_extract_sub_volume_auto.py',
+            'demos/medpy_extract_sub_volume_by_example.py',
+            'demos/medpy_extract_sub_volume.py',
+            'demos/medpy_fit_into_shape.py',
+            'demos/medpy_gradient.py',
+            'demos/medpy_graphcut_label_bgreduced.py',
+            'demos/medpy_graphcut_label_w_regional.py',
+            'demos/medpy_graphcut_label_wsplit.py',
+            'demos/medpy_graphcut_label.py',
+            'demos/medpy_graphcut_voxel.py',
+            'demos/medpy_grid.py',
+            'demos/medpy_info.py',
+            'demos/medpy_intensity_range_standardization.py',
+            'demos/medpy_intersection.py',
+            'demos/medpy_join_masks.py',
+            'demos/medpy_join_xd_to_xplus1d.py',
+            'demos/medpy_label_count.py',
+            'demos/medpy_label_fit_to_mask.py',
+            'demos/medpy_label_superimposition.py',
+            'demos/medpy_merge.py',
+            'demos/medpy_morphology.py',
+            'demos/medpy_resample.py',
+            'demos/medpy_reslice_3d_to_4d.py',
+            'demos/medpy_set_pixel_spacing.py',
+            'demos/medpy_shrink_image.py',
+            'demos/medpy_split_xd_to_xminus1d.py',
+            'demos/medpy_stack_sub_volumes.py',
+            'demos/medpy_swap_dimensions.py',
+            'demos/medpy_watershed.py',
+            'demos/medpy_zoom_image.py'
           ],
 
           **kw
