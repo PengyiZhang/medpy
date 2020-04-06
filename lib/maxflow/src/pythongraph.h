@@ -17,8 +17,8 @@ class Pythongraph : public Graph<captype, tcaptype, flowtype>
 {
 public:
 	Pythongraph(int node_num_max, int edge_num_max) : Graph<captype, tcaptype, flowtype>(node_num_max, edge_num_max, NULL) {};
-	flowtype maxflow() { Graph<captype, tcaptype, flowtype>::maxflow(); return 0;};
-	typename Graph<captype, tcaptype, flowtype>::termtype what_segment(int i) { Graph<captype, tcaptype, flowtype>::what_segment(i); return (typename Graph<captype, tcaptype, flowtype>::termtype)(NULL);};
+	flowtype maxflow() { return Graph<captype, tcaptype, flowtype>::maxflow();};
+	typename Graph<captype, tcaptype, flowtype>::termtype what_segment(int i) { return Graph<captype, tcaptype, flowtype>::what_segment(i);};
 };
 #endif
 
