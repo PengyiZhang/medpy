@@ -6,7 +6,7 @@ python:
   - "2.7"
   - "3.4"
   - "3.5"
-  - "3.6"  
+  - "3.6"
 install:
   # gcut version
   - "ls /usr/lib/x86_64-linux-gnu/libboost_*"
